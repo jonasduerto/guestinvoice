@@ -1,6 +1,13 @@
+
 # GuestInvoice WHMCS Addon
 
 GuestInvoice is a WHMCS addon module that allows you to generate secure, temporary guest access links to invoices. Clients or admins can share these links so that invoices can be viewed and paid without requiring a login. All access is logged, and links can be configured to expire automatically.
+
+## 📊 Project Language Stats
+
+<p align="center">
+  <img src="./assets/languages.svg" alt="Project Language Stats" width="400"/>
+</p>
 
 ## Features
 - Generate temporary guest invoice links (1h, 4h, 12h, 24h, or custom)
