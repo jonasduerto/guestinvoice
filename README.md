@@ -1,64 +1,112 @@
-
 # GuestInvoice WHMCS Addon
 
-GuestInvoice is a WHMCS addon module that allows you to generate secure, temporary guest access links to invoices. Clients or admins can share these links so that invoices can be viewed and paid without requiring a login. All access is logged, and links can be configured to expire automatically.
+GuestInvoice is a WHMCS addon module that provides secure, temporary guest access to invoices. Built with modern PHP practices, it offers a robust and maintainable solution for sharing invoice access without requiring client logins.
 
-## 📊 Project Language Stats
+## 🚀 Features
 
-<p align="center">
-  <img src="./assets/languages.svg" alt="Project Language Stats" width="400"/>
-</p>
+- **Secure Guest Access**: Generate temporary guest invoice links with configurable expiration
+- **Modern OOP Architecture**: Fully refactored with proper namespacing and design patterns
+- **Comprehensive Logging**: Track all access attempts and actions
+- **Admin Dashboard**: View metrics, manage logs, and configure settings
+- **Email Notifications**: Optional email alerts for generated links
+- **Responsive UI**: Works on all devices
+- **CSRF Protection**: Built-in security measures
+- **WHMCS 8.x+ Ready**: Fully compatible with modern WHMCS versions
 
-## Features
-- Generate temporary guest invoice links (1h, 4h, 12h, 24h, or custom)
-- Secure token-based access with expiration
-- Logs all accesses and actions
-- Admin dashboard with metrics and logs
-- Configurable settings (link validity, button visibility, etc.)
-- Email notification support
-- No template or JS/CSS file modifications required
+## 📦 Installation
 
-## Installation
-1. Copy the `guestinvoice` folder to your `modules/addons/` directory in your WHMCS installation.
-2. Activate the module from the WHMCS admin area (Setup > Addon Modules > GuestInvoice > Activate).
-3. Upon activation, the module will automatically create the required database tables (`guest_invoice`, `guest_invoice_logs`, `guest_invoice_setting`).
-4. Configure the module settings as needed from the admin area.
+1. Copy the `guestinvoice` folder to your WHMCS `modules/addons/` directory
+2. Log in to your WHMCS admin area
+3. Navigate to Setup > Addon Modules
+4. Locate "GuestInvoice" and click "Activate"
+5. Configure the module settings as needed
 
-## Folder Structure
+## 🛠️ Project Structure
+
 ```
 /modules/addons/guestinvoice/
-├── Services/
-│   ├── SecurityService.php
-│   ├── AjaxHandler.php
-│   └── LinkService.php
-├── GuestInvoiceCore.php
-├── GuestInvoiceUI.php      # If you need UI-specific functionality
-├── autoload.php
-├── guestinvoice.php        # This main file
-├── templates/
-└── lang/
+├── Services/                     # Service classes
+│   ├── ActivityHistoryService.php # Activity history management
+│   ├── AjaxHandler.php           # AJAX request handling
+│   ├── DashboardService.php      # Dashboard metrics and data
+│   ├── EmailService.php          # Email notifications
+│   ├── LinkService.php           # Link generation and management
+│   ├── SecurityService.php       # Security and validation
+│   ├── SessionService.php        # Session management
+│   └── SettingsService.php       # Module settings
+├── assets/                      # Frontend assets
+│   ├── css/                     # Stylesheets
+│   │   └── guestinvoice.css     # Main styles
+│   ├── img/                     # Images and icons
+│   │   ├── ft_logo.png
+│   │   ├── hometest-logo.svg
+│   │   ├── logo.png
+│   │   └── languages.svg
+│   └── js/                      # JavaScript files
+│       ├── activityHistory.js   # Activity history functionality
+│       ├── admin.js             # Admin interface scripts
+│       ├── app.js               # Main application scripts
+│       ├── guest-invoice.js     # Guest invoice functionality
+│       └── guestlink_modal.js   # Modal dialog handling
+├── templates/                   # Template files
+│   ├── emails/                  # Email templates
+│   │   └── guest_invoice_link.tpl
+│   ├── pages/                   # Page templates
+│   │   ├── activityHistory.tpl  # Activity history view
+│   │   ├── dashboard.tpl        # Admin dashboard
+│   │   └── settings.tpl         # Module settings
+│   ├── error.tpl                # Error page template
+│   ├── guestlink_modal.tpl      # Guest link modal dialog
+│   └── master.tpl               # Main layout template
+├── lang/                       # Language files
+│   ├── english.php
+│   └── spanish.php
+├── GuestInvoiceCore.php        # Core module functionality
+├── GuestInvoiceUI.php          # UI components and rendering
+├── autoload.php               # Class autoloader
+├── bootstrap.php              # Application bootstrap
+├── guestinvoice.php           # Main module file
+├── hooks.php                  # WHMCS hooks
+└── whmcs.json                 # WHMCS module metadata
 ```
 
-## Activation & Deactivation
-- **Activation:** The module will create all required tables and insert default settings. No manual SQL is needed.
-- **Deactivation:** By default, tables are not dropped. You can enable table removal by uncommenting the lines in `guestinvoice_deactivate()`.
+## 🔒 Security Features
 
-## Usage
-- After activation, a "Guest Invoice" button will appear on invoice pages (if enabled in settings).
-- Admins can view metrics, logs, and change settings from the module admin panel.
-- All guest accesses and actions are logged for auditing.
+- Secure token-based authentication
+- Configurable link expiration
+- CSRF protection
+- Rate limiting
+- IP-based access controls (if implemented in SecurityService)
+- Detailed access logging
+- Automatic session management
 
-## Security
-- All guest links use secure, random tokens and have configurable expiration.
-- Only the invoice owner (client) or admin can generate links.
-- All access is logged in the `guest_invoice_logs` table.
+## 🔧 Requirements
 
-## Requirements
 - WHMCS 8.x or later
-- PHP 7.2+
+- PHP 7.4+
+- MySQL 5.7+ or MariaDB 10.3+
 
-## License
-MIT
+## 🚀 Getting Started
 
-## Credits
-Based on the official [WHMCS Sample Addon Module](https://github.com/WHMCS/sample-addon-module) and best practices from the WHMCS developer documentation. 
+1. **Generate a Guest Link**:
+   - Navigate to an invoice in the client area or admin
+   - Click "Generate Guest Link"
+   - Select expiration time and copy the generated link
+
+2. **Admin Dashboard**:
+   - Access via Setup > Addon Modules > GuestInvoice
+   - View access statistics
+   - Manage active links
+   - Configure module settings
+
+## 📝 License
+
+MIT License
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📬 Support
+
+For support, please open an issue in the GitHub repository.
