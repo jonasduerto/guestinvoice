@@ -1,0 +1,36 @@
+{* Modern Header Design *}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{$assetPath}/css/guestinvoice.css" />
+
+<div class="gi-admin-header">
+    <div class="gi-header-content">
+        <div class="gi-logo">
+            <i class="fas fa-file-invoice"></i>
+            <h2>{$_ADDONLANG.guestinvoicemodule}</h2>
+        </div>
+        
+        <nav class="gi-main-nav">
+            <ul>
+                <li class="{if $currentPage=='dashboard'}active{/if}">
+                    <a href="{$modulelink}"><i class="fas fa-home"></i> {$_ADDONLANG.nav_dashboard}</a>
+                </li>
+                <li class="{if $currentPage=='settings'}active{/if}">
+                    <a href="{$modulelink}&action=settings"><i class="fas fa-cog"></i> {$_ADDONLANG.nav_settings}</a>
+                </li>
+                <li class="{if $currentPage=='activityHistory'}active{/if}">
+                    <a href="{$modulelink}&action=activityHistory"><i class="fas fa-list"></i> {$_ADDONLANG.nav_activity_history}</a>
+                </li>
+                {* <li class="{if $currentPage=='generate'}active{/if}">
+                    <a href="{$modulelink}&action=generate"><i class="fas fa-link"></i> {$_ADDONLANG.nav_generate}</a>
+                </li> *}
+            </ul>
+        </nav>
+    </div>
+    
+    {if isset($breadcrumb)}
+        <div class="gi-breadcrumb">
+            <i class="fas fa-chevron-right"></i> {$breadcrumb nofilter}
+        </div>
+    {/if}
+</div>

@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "GuestInvoice\\Lib\\": "lib/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

@@ -1,0 +1,20 @@
+{* Modern Footer Design *}
+</div> <!-- Closing container from header -->
+
+<div class="gi-admin-footer">
+    <div class="gi-footer-content">
+        <p>Guest Invoice Module v{$moduleVersion} &copy; {date('Y')}</p>
+    </div>
+</div>
+
+<!-- Load JavaScript files -->
+{* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *}
+{* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> *}
+<script src="{$assetPath}/js/admin.js"></script>
+
+<!-- Initialize components -->
+<script>
+$(document).ready(function() {
+    // Initialize any plugins here
+});
+</script>

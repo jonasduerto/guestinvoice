@@ -26,28 +26,17 @@ GuestInvoice is a WHMCS addon module that allows you to generate secure, tempora
 
 ## Folder Structure
 ```
-modules/addons/guestinvoice/
-├── guestinvoice.php                # Main module file (activation, config, admin output)
-├── hooks.php                       # Hooks for client area integration and AJAX
-├── lib/
-│   └── Admin/
-│       ├── AdminDispatcher.php     # Admin dispatcher for panel routing
-│       └── Controller.php         # Admin controller for dashboard, logs, settings
-├── include/
-│   ├── ajaxfile.php               # (Optional) AJAX endpoint for admin actions
-│   └── wgs_mailer.php             # (Optional) Email helper
+/modules/addons/guestinvoice/
+├── Services/
+│   ├── SecurityService.php
+│   ├── AjaxHandler.php
+│   └── LinkService.php
+├── GuestInvoiceCore.php
+├── GuestInvoiceUI.php      # If you need UI-specific functionality
+├── autoload.php
+├── guestinvoice.php        # This main file
 ├── templates/
-│   └── admin/
-│       ├── guestInvoice.tpl       # Admin dashboard/settings template
-│       ├── logs.tpl               # Admin logs template
-│       └── ...
-├── assests/
-│   ├── js/                        # JavaScript files (do not modify)
-│   └── css/                       # CSS files (do not modify)
-├── lang/
-│   └── english.php                # Language file (do not modify)
-└── includes/
-    └── guestinvoice.php           # Guest access handler (link validation, session)
+└── lang/
 ```
 
 ## Activation & Deactivation
