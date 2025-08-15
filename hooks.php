@@ -16,6 +16,7 @@ if (!defined('WHMCS')) {
     die('This file cannot be accessed directly');
 }
 
+// require_once __DIR__ . '/autoload.php'; // se carga desde el /bootstrap.php
 require_once __DIR__ . '/bootstrap.php';
 
 use WHMCS\Session;
@@ -114,6 +115,24 @@ add_hook('ClientAreaPage', 1, function($vars) {
 });
 
 
+add_hook('ClientAreaPage', 1, function ($vars) {
+    $uri   = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $parts = array_values(array_filter(explode('/', $uri)));
+
+    // 1) Si coincide con /guestinvoice/{id}/{token}
+    if (count($parts) === 3 && $parts[0] === 'guestinvoice') {
+        require_once __DIR__ . '/src/Http/GuestRouteHandler.php';
+        \GuestInvoice\Http\GuestRouteHandler::handle($parts);
+        exit;
+    }
+
+    // 2) Resto de la lógica de decoración (igual que antes)
+    if (\GuestInvoice\Services\SecurityService::validateSession()) {
+        return (new \GuestInvoice\GuestInvoiceUI())->decorateGuestInterface($vars);
+    }
+
+    return $vars;
+});
 
 /**
  * Validates guest routes before module execution

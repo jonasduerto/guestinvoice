@@ -74,9 +74,10 @@ class LinkService {
     /**
      * Build the guest access URL
      */
-    public function buildGuestUrl(string $token, int $invoiceId): string {
+    public function buildGuestUrl(string $token, int $invoiceId): string
+    {
         $systemUrl = rtrim(Setting::getValue('SystemURL'), '/');
-        return "{$systemUrl}/public_access.php?token={$token}&invoice_id={$invoiceId}";
+        return "{$systemUrl}/guestinvoice/{$invoiceId}/{$token}";
     }
     
     /**

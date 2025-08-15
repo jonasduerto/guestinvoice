@@ -71,6 +71,24 @@ class GuestInvoiceCore {
                     $table->integer('access_count')->default(0);
                     $table->timestamps();
                 });
+            } else {
+                // Si la tabla existe, agregar columna fail_count si no existe
+                if (!Capsule::schema()->hasColumn('guest_invoice', 'fail_count')) {
+                    Capsule::schema()->table('guest_invoice', function ($table) {
+                        $table->integer('fail_count')->unsigned()->default(0)->after('access_count');
+                    });
+                }
+            }
+
+            // Tabla de IPs bloqueadas
+            if (!Capsule::schema()->hasTable('guest_invoice_blocked_ips')) {
+                Capsule::schema()->create('guest_invoice_blocked_ips', function ($table) {
+                    $table->string('ip', 45);
+                    $table->dateTime('blocked_until');
+                    $table->primary('ip');
+                    $table->engine = 'InnoDB';
+                    $table->charset = 'utf8mb4';
+                });
             }
 
             // Tabla de logs
